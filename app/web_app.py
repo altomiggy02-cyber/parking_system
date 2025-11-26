@@ -105,6 +105,10 @@ def acc_info():
     db.close()
 
     return render_template('acc_info.html', Logs=processed_logs)
+@app.route('/register')
+def reg():
+
+    return render_template('register.html')
 
 
 

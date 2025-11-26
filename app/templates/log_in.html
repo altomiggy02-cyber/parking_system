@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom, #ADA8AD, #241F24);
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    .box {
+        width: 350px;
+        padding: 30px;
+        background-color: #CAD2CC;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    .box label {
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .box input {
+        border-radius: 5px;
+        width: 100%;
+        height: 30px;
+        padding: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+    }
+
+    .box button {
+        width: 100%;
+        height: 35px;
+        border-radius: 5px;
+        border: none;
+        background: linear-gradient(to bottom, #ADA8AD, #241F24);
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .flash-message {
+        color: red;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div class="box">
+    <form action="/login" method="POST">
+        <label>Log In</label>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="flash-message">
+            {% for message in messages %}
+              {{ message }}
+            {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Enter your Username" required>
+
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your Password" required>
+
+        <button type="submit">Log in</button>
+    </form>
+</div>
+
+</body>
+</html>

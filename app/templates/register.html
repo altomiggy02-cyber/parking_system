@@ -1,155 +1,240 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <style>
-        body {
-            margin: 0;
-            background: linear-gradient(to bottom, #161717, #241F24);
-            font-family: 'Inter', sans-serif;
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-            url("../static/images/tam.jpg");
-            background-size: cover;
-
-        }
-
-        .container-top {
-            width: 100%;
-            background-color: #76262C;
-            height: 70px;
-            padding: 10px 20px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .container-top img {
-            width: 80px;
-            padding-right: 35px;
-        }
-
-        .container-top h1 {
-            margin: 0;
-            font-size: 22px;
-        }
-
-        .container {
-            display: flex;
-            width: 100%;
-        }
-
-        .side_bar {
-            width: 200px;
-            min-width: 180px;
-            background-color: #2B0F10;
-            padding-top: 20px;
-            height: 100vh;
-        }
-
-        .side_bar ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .side_bar ul li {
-            margin-bottom: 40px;
-        }
-
-        .side_bar a {
-            text-decoration: none;
-            color: white;
-            padding: 12px 20px;
-            display: block;
-        }
-
-        .side_bar a:hover {
-            background-color: #3E40AF;
-        }
-
-        .box {
-            flex: 1;
-            background: #5E6060;
-            margin: 20px;
-            padding: 20px;
-            border-radius: 5px;
-            overflow-x: auto; 
-            opacity: 0.85;
-        }
-
-        table {
-            width: 100%;
-            border-spacing: 5px;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            width: 25%; 
-        }
-
-        th {
-            background: #7B2021;
-            color: white;
-            border-radius: 5px;
-        }
-
-        td {
-            background: #fff;
-            border-radius: 5px;
-        }.placeholder{
-            display: flex;
-            gap: 50px;
-        }
-        .placeholder input{
-            width: 300px;
-            height: 30px;
-            border-radius: 5px;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <title>Register Employee Vehicle — Parking Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{
+      --brand-dark: #76262C;
+      --sidebar: #2B0F10;
+      --panel: #5E6060;
+      --card: rgba(255,255,255,0.12);
+      --accent: #7B2021;
+      --accent-hover: #9c2b2e;
+      --muted: #dcdcdc;
+    }
+    html,body{ height:100%; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#161717 0%, #2b272b 100%);
+      color: var(--muted);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .container-top {
+      width: 100%;
+      background-color: var(--brand-dark);
+      height: 70px;
+      padding: 10px 22px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+    .container-top h1 { margin:0; font-size:20px; letter-spacing:0.6px; }
+    .container-top img{ width:72px; height:auto; object-fit:contain; opacity:0.95; }
+    .container {
+      display:flex;
+      gap: 0;
+      min-height: calc(100vh - 70px);
+    }
+    .side_bar {
+      width: 200px;
+      min-width: 180px;
+      background-color: var(--sidebar);
+      padding-top: 20px;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+    .side_bar ul { list-style:none; padding:0; margin:0; }
+    .side_bar li { margin-bottom: 40px; }
+    .side_bar a {
+      text-decoration: none;
+      color: white;
+      padding: 12px 20px;
+      display: block;
+    }
+    .side_bar a i { margin-right: 10px; }
+    .side_bar a:hover { background-color: #3E40AF; }
+    .box {
+      flex:1;
+      margin: 20px;
+      padding: 22px;
+      background: var(--panel);
+      border-radius: 8px;
+      box-sizing: border-box;
+      opacity: 0.95;
+      min-height: 400px;
+      display:flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .title {
+      color: #fff;
+      font-size: 22px;
+      margin: 0;
+      font-weight: 700;
+    }
+    .reg-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 24px;
+      padding: 20px;
+      background: var(--card);
+      border-radius: 10px;
+      align-items: start;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      color: #fff;
+    }
+    @media (max-width: 880px){
+      .reg-form { grid-template-columns: 1fr; }
+      .box { margin: 12px; }
+    }
+    .form-group {
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .form-group label {
+      font-size: 13px;
+      color: #fff;
+      font-weight: 600;
+    }
+    .reg-form input[type="text"],
+    .reg-form select {
+      height: 42px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.97);
+      color: #222;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+    .full-width { grid-column: 1 / -1; }
+    .actions {
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-top:6px;
+    }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:8px;
+      border: none;
+      font-weight:700;
+      cursor:pointer;
+    }
+    
+    .submit-btn {
+      background-color: var(--accent);
+      color: white;
+      padding: 12px 18px;
+      font-size: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background .15s ease;
+    }
+    .submit-btn:hover { background: var(--accent-hover); }
+    .hint { font-size:12px; color: #e8e8e8; opacity:0.85; }
+    .result {
+      margin-top: 6px;
+      color: #dff0d8;
+      background: rgba(0,0,0,0.12);
+      padding: 10px 12px;
+      border-radius: 8px;
+      display:none;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+    }
+    .reg-form input::placeholder { color: #7a7a7a; }
+  </style>
 </head>
 <body>
-
-    <!-- HEADER -->
-    <div class="container-top">
-        <h1>PARKING MANAGEMENT</h1>
-        <img src="../static/images/ccs.png" alt="Logo">
+  <div class="container-top">
+    <h1>PARKING MANAGEMENT</h1>
+    <img src="../static/images/ccs.png" alt="Logo" onerror="this.style.display='none'">
+  </div>
+  <div class="container">
+    <div class="side_bar">
+      <ul>
+        <li><a href="{{url_for('vehicle')}}"><i class="fa-solid fa-address-book"></i> Employee Vehicle</a></li>
+        <li><a href="{{url_for('park_logs')}}"><i class="fa-solid fa-car"></i> Parking Logs</a></li>
+        <li><a href="{{url_for('acc_info')}}"><i class="fa-solid fa-user"></i> User Information</a></li>
+        <li><a href="{{url_for('reg')}}"><i class="fa-solid fa-address-card"></i> Register Employee Vehicle</a></li>
+        <li><a href="{{url_for('logout')}}"><i class="fa-solid fa-arrow-right-to-bracket"></i> Log Out</a></li>
+      </ul>
     </div>
-
-    <div class="container">
-
-        <!-- SIDE BAR -->
-        <div class="side_bar">
-            <ul>
-                <li><a href="{{url_for('vehicle')}}"><i class="fa-solid fa-address-book"></i> Employee Vehicle</a></li>
-                <li><a href="{{url_for('park_logs')}}"><i class="fa-solid fa-car"></i> Parking Logs</a></li>
-                <li><a href="{{url_for('acc_info')}}"><i class="fa-solid fa-user"></i> User Information</a></li>
-                <li><a href="{{url_for('reg')}}"><i class="fa-solid fa-address-card"></i> Register Employee Vehicle</a></li>
-                <li><a href="{{url_for('logout')}}"><i class="fa-solid fa-arrow-right-to-bracket"></i> Log Out</a></li>
-            </ul>
+    <div class="box">
+      <h2 class="title">Register Employee Vehicle</h2>
+      <form class="reg-form" id="regForm" method="POST" action="{{ url_for('reg') }}">
+        <div class="form-group full-width">
+          <label for="uid">CARD UID</label>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <input id="uid" name="uid" type="text" placeholder="Enter your CARD UID" required style="flex:1;">
+            </button>
+          </div>
         </div>
-
-        <!-- TABLE SECTION -->
-        <div class="box">
-            <table>
-                <tr>
-                    <th>CARD UID</th>
-                    <th>EMPLOYEE NAME</th>
-                    <th>VEHICLE TYPE</th>
-                    <th>VEHICLE PLATE</th>
-                </tr>
-
-            </table>
-                <div class = "placeholder">
-                    <input type="text" name="uid" placeholder="UID" required>
-                    <input type="text" name="nm" placeholder="Name (Surname, Firstname M)" required>
-                    <input type="text" name="vehicle_type" placeholder="Vehicle Type" required>
-                    <input type="text" name="vehicle_plate" placeholder="Vehicle Plate" required>
-                </div>
+        <div class="form-group">
+          <label for="nm">EMPLOYEE NAME</label>
+          <input id="nm" name="nm" type="text" placeholder="Surname, Firstname M." required>
         </div>
-
+        <div class="form-group">
+          <label for="vehicle_type">VEHICLE TYPE</label>
+          <select id="vehicle_type" name="vehicle_type" required>
+            <option value="" disabled selected>Select Vehicle Type</option>
+            <option value="Sedan">Sedan</option>
+            <option value="SUV">SUV</option>
+            <option value="Motorcycle">Motorcycle</option>
+            <option value="Hatchback">Hatchback</option>
+            <option value="Pickup">Pickup</option>
+            <option value="Van">Van</option>
+            <option value="Bicycle">Bicycle</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="vehicle_plate">VEHICLE PLATE</label>
+          <input id="vehicle_plate" name="vehicle_plate" type="text" placeholder="e.g. ABC1234" required>
+        </div>
+        <div class="form-group full-width" style="display:flex; justify-content:flex-end;">
+          <button type="submit" class="submit-btn">REGISTER</button>
+        </div>
+      </form>
+      <div id="resultBox" class="result"><i class="fa-solid fa-circle-check"></i><span id="resultText">Vehicle registered.</span></div>
     </div>
-
+  </div>
+  <script>
+    document.getElementById('scanBtn').addEventListener('click', function(){
+      const uidInput = document.getElementById('uid');
+      if (!uidInput.value) {
+        uidInput.value = 'RFID-' + Math.floor(10000 + Math.random()*90000);
+      } else {
+        uidInput.value = uidInput.value + '-1';
+      }
+      uidInput.focus();
+    });
+    document.getElementById('regForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const nm = document.getElementById('nm').value || '[No name]';
+      const uid = document.getElementById('uid').value || '[No UID]';
+      const vt = document.getElementById('vehicle_type').value || '[No type]';
+      const plate = document.getElementById('vehicle_plate').value || '[No plate]';
+      const rb = document.getElementById('resultBox');
+      const rt = document.getElementById('resultText');
+      rt.textContent = `Registered: ${nm} — ${vt} — Plate: ${plate} — UID: ${uid}`;
+      rb.style.display = 'flex';
+      setTimeout(()=>{ rb.style.display='none'; }, 2500);
+    });
+  </script>
 </body>
 </html>

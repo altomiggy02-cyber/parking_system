@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash,session
 import mysql.connector
 import base64
-import serial
-import time
 
 app = Flask(__name__)
 app.secret_key = "secret123"
